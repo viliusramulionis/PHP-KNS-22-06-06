@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalendoriaus lentelės</title>
+    <style>
+        /* 
+            Savybe float turi dvi reiksmes: left arba right
+            Ji pastumia visą elemento turinį ir išlygiuoja jį nurodyta kryptimi, 
+            kad sekantys elementai galėtų priglusti šalia
+            
+
+            Savybė width nurodo norimą elemento plotį.
+            Savybė height nurodo norimą elemento aukštį.
+        */
+        table {
+            border: 1px solid black;
+            width: 200px;
+            
+        }
+
+        .month {
+            text-align: center;
+        }
+
+        div {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td class="month" colspan="6">Sausis</td>
+            </tr>
+            <tr>
+                <td>P</td>
+                <td>A</td>
+                <td>T</td>
+                <td>K</td>
+                <td>P</td>
+                <td>Š</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="month" colspan="6">Sausis</td>
+            </tr>
+            <tr>
+                <td>P</td>
+                <td>A</td>
+                <td>T</td>
+                <td>K</td>
+                <td>P</td>
+                <td>Š</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td class="month" colspan="6">Sausis</td>
+            </tr>
+            <tr>
+                <td>P</td>
+                <td>A</td>
+                <td>T</td>
+                <td>K</td>
+                <td>P</td>
+                <td>Š</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

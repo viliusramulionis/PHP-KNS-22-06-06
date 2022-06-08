@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margin-Padding</title>
+    <link href="">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+        .box {
+            background: red;
+            width: 400px;
+            height: 400px;
+        }
+        .margin {
+            /* margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px; */
+            margin: 10px;
+            width: 50%;
+        }
+        .padding {
+            /* padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px; */
+
+            /* 10px turinio atstūmimas iš iš visų kraštinių išskyrus dešiniają */
+            /* padding: 10px;
+            padding-right: 0; */
+
+            /* 10px turinio atstūmimas iš iš visų kraštinių išskyrus dešiniają vienoje eilutėje */
+            padding: 10px 0 10px 10px;
+
+            /* 10px turinio atstūmimas iš viršaus ir apačios */
+            padding: 10px 0;
+
+            /* 10px turinio atstūmimas iš viršaus ir 20px atstūmimas iš apačios */
+            padding: 10px 0 20px;
+
+            /* width: 380px; */
+        }
+    </style>
+</head>
+<body>
+    <!-- Neteisingas dvieju klasiu priskyrimas -->
+    <!-- <div class="margin" class="box"></div> -->
+    <div class="box margin"></div>
+    <div class="box padding">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati recusandae blanditiis deleniti tempora consequatur quae, voluptatem possimus. Cupiditate rem harum dolores, deserunt unde adipisci delectus ut, aperiam debitis nesciunt corporis libero quisquam! Itaque est libero ipsum quasi esse nemo voluptatibus rerum, maiores molestias, asperiores neque amet accusantium totam cum dolor.
+    </div>
+</body>
+</html>
