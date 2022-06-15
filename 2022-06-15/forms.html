@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+    <style>
+        label {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Duomenu perdavimui svarbus atributai, kurie gali buti priskirti prie formos elemento -->
+    <form action="" enctype="" method="">
+        <input type="hidden" value="Test">
+        <label>Vardas:</label>
+        <input type="text" value="Jonas" required="required">
+        <label>Metai:</label>
+        <input type="number" placeholder="1958" required="required">
+        <label>Nuotrauka:</label>
+        <input type="file">
+        <!-- Pirmas pavyzdys kaip aktyvuoti checkbox elementa paspaudus ant teksto-->
+        <h3>Pirmas pavyzdys checkbox ir label elementams</h3>
+        <label>
+            <input type="checkbox" required="required">
+            Sutinku su registracijos taisyklemis:
+        </label>
+        <h3>Antras pavyzdys checkbox ir label elementams</h3>
+        <input id="agree" type="checkbox">
+        <label for="agree">Sutinku su registracijos taisyklemis:</label>
+        <h3>Radio input pavyzdys</h3>
+        <label><input type="radio" name="daiktas"> Lova</label>
+        <label><input type="radio" name="daiktas"> Kede</label>
+        <label><input type="radio" name="daiktas"> Stalas</label>
+        <h3>Datos pasirinkimo pavyzdys</h3>
+        <label>Data:</label>
+        <input type="date" required="required">
+        <label>Data ir laikas:</label>
+        <input type="datetime-local">
+        <h3>Slaptažodžio laukelis:</h3>
+        <input type="password">
+        <!-- Selectbox -->
+        <h3>Selectboxai</h3>
+        <label>Vienos reikšmės select pasirinkimas:</label>
+        <select name="spalva">
+            <option value="1">Geltona</option>
+            <option value="2">Žalia</option>
+            <option value="3">Raudona</option>
+            <option value="4" selected="selected">Mėlyna</option>
+        </select>
+        <label>Multiple selectbox:</label>
+        <select name="spalva" multiple="multiple">
+            <option value="1">Geltona</option>
+            <option value="2">Žalia</option>
+            <option value="3">Raudona</option>
+            <option value="4" selected="selected">Mėlyna</option>
+        </select>
+        <h3>Formos pridavimas:</h3>
+        <!-- nenaudojamas būdas-->
+        <input type="submit" value="Siųsti">
+        <!-- naudojamas būdas -->
+        <!-- Button naudojamas nebūtinai tik formoje -->
+        <button type="submit">Siųsti</button>
+    </form>
+</body>
+</html>
