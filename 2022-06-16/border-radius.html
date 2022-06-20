@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=4, initial-scale=1.0">
+    <title>Border radius</title>
+    <style>
+        body {
+            background: black;
+            margin: 0;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background: pink;
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            line-height: 200px;
+        }
+        .inner_box {
+            width: 200px;
+            height: 200px;
+            background: red;
+            text-align: center;
+        }
+        .rounded {
+            border-radius: 60px 25px 50px 0;
+            overflow: hidden;
+        }
+        .overflow-text{
+            color: white;
+            height: 50px;
+        }
+        .overflow {
+            /* Norint paslėpti perteklinį turinį kuris išlenda už elemento ribų: */
+            overflow: hidden;
+            /* Norint sukurti slankmatį  */
+            overflow: auto;
+        }
+        .box1 {
+            top: 100px;
+            left: 500px;
+            text-align: center;
+            line-height: 200px;
+        }
+        .circle {
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Pirmas border-radius pavyzdys -->
+    <div class="box rounded">
+        <div class="inner_box">Pirmas</div>
+    </div>
+    <!-- Overflow hidden pavyzdys -->
+    <div class="overflow-text overflow">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas esse at error eius a illum, veritatis dolorem. Officiis molestiae ipsa necessitatibus illum quia saepe quibusdam sit explicabo quidem voluptatibus repudiandae ab esse natus, deleniti iusto doloribus aperiam architecto voluptas amet facilis aut blanditiis quo. Quis voluptatem rerum eligendi eum vel quidem, consequatur ea perferendis nostrum, pariatur possimus repellat consequuntur laborum sit quod explicabo cum fugiat corrupti nulla ullam! Illo ab temporibus numquam dignissimos non aperiam modi delectus dolorem sunt vitae itaque ad provident incidunt voluptate quidem odit repellendus, rerum vel ipsum esse ipsam beatae nemo exercitationem. Autem eaque iure rem.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis fugit ut voluptatibus? Atque labore harum culpa dolores, ducimus recusandae numquam quas! Earum ratione commodi fugit fuga? Impedit nemo quidem, atque est, minus ut natus voluptate necessitatibus voluptates quisquam tempora totam quia laudantium neque officiis possimus ipsam recusandae velit ratione pariatur ipsa repellendus earum. Pariatur quaerat fuga error qui, impedit illum at. Odio reiciendis non ad ullam culpa ipsa aspernatur, tempora, laboriosam, quas deserunt modi? Beatae ut earum reprehenderit! Amet odio dolor animi fugit quam! Voluptas, modi officiis asperiores natus, quas quod laborum consequuntur dolorum labore distinctio enim iusto provident id mollitia, nostrum minus recusandae sit velit ducimus delectus assumenda facere? Nostrum minus molestias ipsum quod consequuntur id at? Obcaecati, iste quibusdam nulla illo quos fuga autem praesentium ipsa quam neque vitae consequatur magnam, eius officiis repellat esse. Dolore veniam, illum maxime eius incidunt consequuntur sint aut quod officiis fugit aliquid ducimus qui dolorem cumque magni nostrum, labore facilis placeat, rem accusamus sequi aperiam? Corrupti ad eveniet amet aspernatur libero sint quisquam odio perspiciatis natus excepturi quos possimus debitis sed numquam, eos cum temporibus. Nemo sunt mollitia esse, blanditiis tenetur, nesciunt id sapiente ipsum atque minus ducimus voluptatibus molestias ab quo.
+    </div> 
+    <!-- Antras border-radius pavyzdys -->
+    <div class="box box1 circle">Antras</div> 
+</body>
+</html>

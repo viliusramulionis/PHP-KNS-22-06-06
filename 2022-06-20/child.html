@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Children</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .boxes {
+            display: flex;
+            gap: 10px;
+        }
+
+        .boxes .box {
+            width: 20%;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        /* Pirmas pavyzdys */
+
+        .pirmas .box:nth-child(2) {
+            background: red;
+        }
+
+        /* Antras pavyzdys */
+
+        .antras .box:nth-child(2n) {
+            background: red;
+        }
+
+        /* Trečias pavyzdys */
+        /* even arba odd = lyginis, nelyginis */
+        .trecias .box:nth-child(odd) {
+            background: red;
+        }
+
+        /* Ketvirtas pavyzdys */
+
+        .ketvirtas .box:nth-child(3n) {
+            background: red;
+        }
+
+        /* Penktas pavyzdys */
+
+        .penktas .box:first-child {
+            background: red;
+        }
+
+        /* Šeštas pavyzdys */
+
+        .sestas .box:last-child {
+            background: red;
+        }
+        .sestas .box:last-child:hover {
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pirmas pavyzdys</h1>
+    <div class="boxes pirmas">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+    <h1>Antras pavyzdys</h1>
+    <div class="boxes antras">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+    <h1>Trečias pavyzdys</h1>
+    <div class="boxes trecias">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+    <h1>Ketvirtas pavyzdys</h1>
+    <div class="boxes ketvirtas">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+    <h1>Pentas pavyzdys</h1>
+    <div class="boxes penktas">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+    <h1>Šeštas pavyzdys</h1>
+    <div class="boxes sestas">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+    </div>
+</body>
+</html>

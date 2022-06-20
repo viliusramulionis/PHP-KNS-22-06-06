@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teksto formatavimas css savybėmis</title>
+    <style>
+        p {
+            letter-spacing: 1px; /* Tarpams tarp raidžių valdyti */
+            text-indent: 30px; /* Teksto pirmos eilutes atitraukimas iš kairės pusės */
+        }
+        .word-spacing {
+            word-spacing: 20px;
+        }
+        .word-wrap {
+            width: 200px;
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 10px black;
+        }
+        .box-shadow {
+            margin: 50px auto 0;
+            width: 300px;
+            height: 250px;
+            background: red;
+            box-shadow: inset -5px -11px 94px -38px black; 
+            /* Inset nurodo seselio nauodojima elemento viduje */
+            /* Pirmas parametras nurodo horizontalia šešėlio padėtį */
+            /* Antras parametras vertikalią */
+            /* Trečias parametras nurodo blur'ą */
+            /* Ketvirtas parametras nurodo spread'ą */
+        }
+    </style>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ex corrupti nisi? Quia officia tempore animi, sint necessitatibus quidem accusantium? Necessitatibus deserunt, doloribus modi fugiat sed, minus ex, quae omnis asperiores quaerat numquam? Sit molestiae, reprehenderit dolor, dignissimos accusantium neque ipsam error quas quo labore quidem recusandae, officiis at rerum id vitae magnam amet vero voluptates! Distinctio sunt accusamus dolores adipisci voluptatibus nobis quam provident incidunt vitae esse, quia sint nemo quidem pariatur exercitationem voluptates deleniti totam libero blanditiis. Consectetur quasi dicta nemo, voluptatum quas at tenetur similique voluptates rem quae amet dolorum iusto sint inventore nihil praesentium eligendi ipsum.</p>
+    <p class="word-spacing">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ex corrupti nisi? Quia officia tempore animi, sint necessitatibus quidem accusantium? Necessitatibus deserunt, doloribus modi fugiat sed, minus ex, quae omnis asperiores quaerat numquam? Sit molestiae, reprehenderit dolor, dignissimos accusantium neque ipsam error quas quo labore quidem recusandae, officiis at rerum id vitae magnam amet vero voluptates! Distinctio sunt accusamus dolores adipisci voluptatibus nobis quam provident incidunt vitae esse, quia sint nemo quidem pariatur exercitationem voluptates deleniti totam libero blanditiis. Consectetur quasi dicta nemo, voluptatum quas at tenetur similique voluptates rem quae amet dolorum iusto sint inventore nihil praesentium eligendi ipsum.</p>
+    <p class="word-wrap">
+        Lorem labaawdawdawkdonawiukfjnawkjdnfawlkdmlkawd awdawdawd awdawdawd
+    </p>
+    <div class="text-shadow">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum ex corrupti nisi? Quia officia tempore animi, sint necessitatibus quidem accusantium? Necessitatibus deserunt, doloribus modi fugiat sed, minus ex, quae omnis asperiores quaerat numquam? Sit molestiae, reprehenderit dolor, dignissimos accusantium neque ipsam error quas quo labore quidem recusandae, officiis at rerum id vitae magnam amet vero voluptates! Distinctio sunt accusamus dolores adipisci voluptatibus nobis quam provident incidunt vitae esse, quia sint nemo quidem pariatur exercitationem voluptates deleniti totam libero blanditiis. Consectetur quasi dicta nemo, voluptatum quas at tenetur similique voluptates rem quae amet dolorum iusto sint inventore nihil praesentium eligendi ipsum.</p>
+    </div>
+    <div class="box-shadow"></div>
+    
+</body>
+</html>
