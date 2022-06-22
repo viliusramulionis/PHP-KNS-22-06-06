@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White-space, text-overflow</title>
+    <style>
+        .text {
+            white-space: pre-line;
+        }
+        .text-overflow {
+            margin-top: 30px;
+            width: 353px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quo.
+        Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi cum et corporis natus minima eveniet! Nihil laboriosam hic temporibus nemo repudiandae qui molestias nostrum veritatis. Laborum aut rem illum excepturi.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia harum possimus accusamus sequi accusantium voluptatem esse aliquid minus, illum blanditiis.
+    </div>
+    <div class="text-overflow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quo.
+        Lorem ipsum dolor sit amet.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi cum et corporis natus minima eveniet! Nihil laboriosam hic temporibus nemo repudiandae qui molestias nostrum veritatis. Laborum aut rem illum excepturi.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia harum possimus accusamus sequi accusantium voluptatem esse aliquid minus, illum blanditiis.
+    </div>
+</body>
+</html>
