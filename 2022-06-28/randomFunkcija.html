@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random funkcija</title>
+</head>
+<body>
+    <script>
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+        }
+
+        let skaicius = getRandomInt(1, 100)
+
+        //Atsitiktinis skaicius iki 10
+        let stringas = 'abcdefghijklmnopqrstuvwxyz'
+        let x = getRandomInt(0, stringas.length - 1)
+        let rezultatas = stringas[x] 
+
+        x = Math.floor(Math.random() * (stringas.length - 1))
+        rezultatas += stringas[x]
+
+        x = Math.floor(Math.random() * (stringas.length - 1))
+        rezultatas += stringas[x]
+
+        console.log(rezultatas)
+
+        //console.log(stringas[Math.floor(Math.random() * (stringas.length - 1))] + stringas[Math.floor(Math.random() * (stringas.length - 1))] + stringas[Math.floor(Math.random() * (stringas.length - 1))])
+    </script>
+</body>
+</html>
