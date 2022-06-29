@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprendimai</title>
+</head>
+<body>
+    <script>
+        const consoleH2 = 'font-weight: bold; font-size: 16px;'
+        console.log('%cPirma užduotis:', consoleH2)
+        //Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus (Jonas Jonaitis). Atspausdinti trumpesnį stringą.
+        const vardas = 'Bradas'
+        const pavarde = 'Pitas'
+        
+        if(vardas.length > pavarde.length) {
+            console.log('Trumpesnis stringas yra: ' + vardas)
+        } else if (vardas.length === pavarde.length) {
+            console.log('Stringai vienodo ilgio')
+        } else {
+            console.log('Trumpesnis stringas yra: ' + pavarde)
+        }
+
+        console.log('%cAntra užduotis:', consoleH2)
+        //Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus. 
+        //Vardą atspausdinti tik didžiosiom raidėm, o pavardę tik mažosioms.
+        console.log(vardas.toUpperCase())
+        console.log(vardas.toLowerCase())
+
+        console.log('%cTrečia užduotis:', consoleH2)
+        //Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus. 
+        //Sukurti trečią kintamąjį ir jam priskirti stringą, sudarytą iš pirmų vardo ir 
+        //pavardės kintamųjų raidžių. Jį atspausdinti.
+        const ab = vardas[0] + pavarde[0]
+        console.log(ab)
+
+        console.log('%cKetvirta užduotis:', consoleH2)
+        //Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus. 
+        //Sukurti trečią kintamąjį ir jam priskirti stringą, sudarytą iš trijų paskutinių vardo ir pavardės 
+        //kintamųjų raidžių. Jį atspausdinti.
+        let threeLetters = vardas[vardas.length - 3] + vardas[vardas.length - 2] + vardas[vardas.length - 1] + pavarde[pavarde.length-3] + pavarde[pavarde.length-2] + pavarde[pavarde.length-1]
+        //Alternatyvus sprendimas
+        threeLetters = vardas.substring(vardas.length - 3) + pavarde.substring(pavarde.length - 3)
+        console.log(threeLetters)
+
+
+        console.log('%cPenkta užduotis:', consoleH2)
+        //Sukurti kintamąjį su stringu: “Once upon a time in hollywood”. 
+        //Jame visas “o” (didžiąsias ir mažąsias) pakeisti žvaigždutėm “*”.  Rezultatą atspausdinti.
+        let title = 'Once upon a time in hollywood'
+        console.log(title.replace(/[oO]/g, '*'))
+
+        //Sukurti kintamąjį su stringu: “Once upon a time in hollywood”. 
+        //Suskaičiuoti visas “o” (didžiąsias ir mažąsias) raides. 
+        //Rezultatą atspausdinti.
+        console.log('%cŠešta užduotis:', consoleH2)
+        console.log(title.match(/[oO]/g).length)
+
+        console.log('%cSeptinta užduotis:', 'font-weight: bold; font-size: 16px;')
+        //Sukurti kintamąjį su stringu: “An American in Paris”. 
+        //Jame ištrinti visas balses. Rezultatą atspausdinti. 
+        //Kodą pakartoti su stringais: “Breakfast at Tiffany's”, 
+        //“2001: A Space Odyssey” ir “It's a Wonderful Life”.
+        const balses = /[aAeEiIyYoOuU]/g
+        title = 'An American in Paris'
+        console.log(title.replaceAll(balses, ''))
+
+        title = 'Breakfast at Tiffany\'s'
+        console.log(title.replaceAll(balses, ''))
+
+        title = '2001: A Space Odyssey'
+        console.log(title.replaceAll(balses, ''))
+
+        title = 'It\'s a Wonderful Life'
+        console.log(title.replaceAll(balses, ''))
+
+        console.log('%cAštunta užduotis:', consoleH2)
+        //Suskaičiuoti kiek stringe “Don't Be a Menace to South Central While Drinking Your Juice in the Hood” 
+        //yra žodžių trumpesnių arba lygių nei 5 raidės. Pakartokite kodą su stringu 
+        //“Tik nereikia gąsdinti Pietų Centro, geriant sultis pas save kvartale”.
+
+    </script>
+</body>
+</html>
