@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masyvai</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+
+        let masyvas = ['Pirmas', 'Antras', 'Trečias', 'Ketvirtas']
+
+        // for(let i = 0; i < masyvas.length; i++) {
+        //     console.log(masyvas[i])
+        // }
+
+        //Prie kiekvienos masyvo reikšmės pridėkite atsitiktinį skaičių nuo 0 iki 10
+
+        masyvas = [250, 230, 280, 111, 12, 10]
+
+        for(let i = 0; i < masyvas.length; i++) {
+            masyvas[i] += rand(0, 10)
+        }
+
+        //Prie kiekvienos masyvo reikšmės pridekite vienu indeksu aukščiau pažymėtą reikšmę
+        for(let i = 0; i < masyvas.length; i++) {
+            if(i != 0) {
+                masyvas[i] += masyvas[i - 1]
+            }
+        }
+
+        //For of naudojamas siekiant gauti kiekvieno masyve esancio elemento reiksme
+        for(let value of masyvas) {
+            //console.log(value)
+        }
+
+        //For in naudojamas siekiant gauti kiekvieno masyve esancio elemento indeksa
+        for(let index in masyvas) {
+            masyvas[index] = true
+        }
+
+        masyvas = [
+            ['Pirmas', 'Antras', 'Trečias', 'Ketvirtas'],
+            [20, 30, 40, 50, [ 10, 20, 30] ]
+        ]
+
+        //Norint paimti antrame vidiniame masyve esančią trečiają reikšmę
+        //console.log(masyvas)
+        //console.log(masyvas[1][2])
+        //console.log(masyvas[1][4][2])
+
+        for(let a in masyvas) {
+            for(let b in masyvas[a]) {
+                if(typeof masyvas[a][b] === 'object') {
+                    for(let c in masyvas[a][b]) {
+                        console.log(masyvas[a][b][c])
+                    }
+                } else {
+                    console.log(masyvas[a][b])
+                }
+            }
+        }
+
+        masyvas = []
+
+        //Push metodas prideda reikšmę į masyvo galą
+        masyvas.push('Pirmas')
+
+        console.log(masyvas)
+
+        masyvas[masyvas.length] = 'Naujas elementas'
+    </script>
+</body>
+</html>

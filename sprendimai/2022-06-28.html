@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        //Sukurkite keturis kintamuosius kuriems sugeneruokite atsitiktines reikšmes nuo 0 iki 2. 
+        //Suskaičiuokite kiek yra nulių, vienetų ir dvejetų. 
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        document.write('<h2>Ketvirta užduotis</h2>')
+
+        let a = rand(0, 2)
+        let b = rand(0, 2)
+        let c = rand(0, 2)
+        let d = rand(0, 2)
+
+        let nuliai = 0
+        let vienetai = 0
+        let dvejetai = 0
+
+        if(a === 0) 
+            nuliai++
+
+        if(b === 0) 
+            nuliai++
+
+        if(c === 0)
+            nuliai++
+
+        if(d === 0)
+            nuliai++
+
+        if(a === 1)
+            vienetai++
+
+        if(b === 1)
+            vienetai++
+
+        if(c === 1)
+            vienetai++
+
+        if(d === 1)
+            vienetai++
+
+        if(a === 2)
+            dvejetai++
+
+        if(b === 2)
+            dvejetai++
+
+        if(c === 2)
+            dvejetai++
+
+        if(d === 2)
+            dvejetai++
+
+        
+        document.write(`<p>Gauti skaičiai: ${a}, ${b}, ${c}, ${d}</p>`)
+        document.write(`Nuliai: ${nuliai}, Vienetai: ${vienetai}, Dvejetai: ${dvejetai}`)
+
+        document.write('<h2>Penkta užduotis:</h2>')
+
+        //Sugeneruokite atsitiktinį skaičių nuo 1 iki 6 ir jį atspausdinkite atitinkame h tage. Pvz skaičius 3- rezultatas: <h3>3</h3>
+
+        let random = rand(1, 6)
+
+        document.write(`<h${random}>Labas Pasauli!</h${random}>`)
+
+        document.write('<h2>Šešta užduotis:</h2>')
+
+        //Pirmas variantas
+        // let html = ''
+        // let counter = 0
+
+        // for(let i = 0; i < 400; i++) {
+        //     if(counter >= 50) {
+        //         html += '<br />'
+        //         counter = 0
+        //     }
+
+        //     html += '*'
+        //     counter++
+        // }
+
+        //Antras variantas
+
+        let html = ''
+
+        for(let i = 0; i < 400; i++) {
+            if(i != 0 && i % 50 === 0)
+                html += '<br />'
+
+            html += '*'
+        }
+
+        document.write(html)
+
+        document.write('<h2>Septinta užduotis:</h2>')
+
+        //Sugeneruokite 300 atsitiktinių skaičių nuo 0 iki 300, atspausdinkite juos atskirtus tarpais ir 
+        //suskaičiuokite kiek tarp jų yra didesnių už 150.  
+        //Skaičiai didesni nei 275 turi būti raudonos spalvos.
+        
+        html = ''
+        counter = 0
+
+        for(let i = 0; i < 300; i++) {
+            const number = rand(0, 300)
+
+            if(number > 150) 
+                counter++
+
+            if(number > 275) {
+                html += '<span style="color: red;">' + number + '</span> '
+            } else {
+                html += number + ' '
+            }
+        }
+
+        document.write(html)
+
+        document.write(`<p>Skaičių didesnių nei 150 yra: <strong>${counter}</strong>`)
+
+    </script>
+</body>
+</html>
