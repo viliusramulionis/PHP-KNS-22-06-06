@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorthands</title>
+</head>
+<body>
+    <script>
+        let x = 10
+        let y = 0 //=== false
+
+        // if(x === 10)
+        //     y = 'Kintamasis x yra lygus 10'
+        
+        y = y ? 'Kintamasis x yra lygus 10' : '' 
+
+        
+        y = y || 'Reikšmė pakeista kadangi kintamasis y egzistuoja'
+
+        y = false
+
+        // if(y) {
+        //     y = 'Reikškmė'
+        // } else {
+        //     y = 'Kitokia reikšmė'
+        // }
+
+        //y = y && 'Reikšmė pakeista kadangi kintamasis y neegzistuoja'
+        document.write(y)
+
+        
+    </script>
+</body>
+</html>

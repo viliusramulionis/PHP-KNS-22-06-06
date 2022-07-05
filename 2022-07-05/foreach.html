@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foreach Funkcija</title>
+</head>
+<body>
+    <script>
+        let masyvas = ['Obuolys', 'Bananas', 'Kebabas', 'Vanduo']
+
+        // masyvas.forEach(() => {
+            
+        // })
+
+        // masyvas.forEach(function(reiksme) {
+        //     console.log(reiksme)
+        // })
+
+        function each(masyvas, callback) {
+            for(let i = 0; i < masyvas.length; i++) {
+                callback(masyvas[i], i, masyvas)
+            }
+        }
+
+        each(masyvas, function(reiksme, indeksas, masyvas) {
+            console.log(reiksme)
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2022-06-29</title>
+    <style>
+        #antraUzduotis {
+            line-height: 7px;
+        }
+    </style>
+</head>
+<body>
+    <div id="pirmaUzduotis"></div>
+    <div id="antraUzduotis"></div>
+    <div id="ketvirtaUzduotis"></div>
+    <div id="penktaUzduotis"></div>
+    <script>
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        //Vienoje eilutėje atspausdinkite visus skaičius nuo 1 iki 3000, kurie dalijasi iš 77 be liekanos. 
+        //Skaičius atskirkite kableliais. Po paskutinio skaičiaus kablelio neturi būti. Jeigu reikia, 
+        //panaudokite css, kad visi rezultatai matytųsi ekrane.
+        document.getElementById('pirmaUzduotis').innerHTML = '<h2>Pirma užduotis</h2>'
+        let size = 3000 
+        let html = ''
+        let kablelis = ', '
+
+        for(let i = 1; i < size; i++) {
+            if(i === size - (size % 77)) {
+                kablelis = ''
+            }
+
+            if(i % 77 === 0){
+                html += i + kablelis
+            }
+        }
+
+        document.getElementById('pirmaUzduotis').innerHTML += html
+
+        document.getElementById('antraUzduotis').innerHTML = '<h2>Antra ir trečia užduotys</h2>'
+
+        //Nupieškite kvadratą iš “*”, kurio kraštines sudaro 100 “*”. 
+        //.Panaudokite css stilių, kad kvadratas ekrane atrodytų kvadratinis.
+
+        size = 25
+        html = ''
+
+        for(let E = 0; E < size; E++) {
+
+            for(let S = 0; S < size; S++) {
+                if(S === E || S === (size - 1) - E) {
+                    html += '<span style="color: red;">*</span>'
+                } else {
+                    html += '*'
+                }
+            }
+
+            html += '<br />'
+
+        }
+
+        document.getElementById('antraUzduotis').innerHTML += html
+        //Metam monetą. Monetos kritimo rezultatą imituojam atsitiktinio skaičiaus funkcija, kur 0 yra herbas, o 1 - skaičius. Monetos metimo rezultatus išvedame į ekraną atskiroje eilutėje: “S” jeigu iškrito skaičius ir “H” jeigu herbas. Suprogramuokite keturis skirtingus scenarijus kai monetos metimą stabdome:
+        // Iškritus herbui;
+        // Tris kartus iškritus herbui;
+        // Tris kartus iš eilės iškritus herbui;
+
+        document.getElementById('ketvirtaUzduotis').innerHTML += '<h2>Ketvirta užduotis</h2>'
+        
+        //Pirmas scenarijus
+        document.getElementById('ketvirtaUzduotis').innerHTML += '<h4>Pirmas scenarijus</h4>'
+
+        html = ''
+
+        while(true) {
+            const skaicius = rand(0, 1)
+
+            if(skaicius === 0) {
+                html += 'H'
+                break
+            } else {
+                html += 'S'
+            }
+        }
+
+        document.getElementById('ketvirtaUzduotis').innerHTML += `<p>${html}</p>`
+
+        //Antras scenarijus
+        document.getElementById('ketvirtaUzduotis').innerHTML += '<h4>Antras scenarijus</h4>'
+
+        html = ''
+        let counter = 0
+
+        while(true) {
+            const skaicius = rand(0, 1)
+
+            if(skaicius === 0) {
+                html += 'H'
+                counter++
+            } else {
+                html += 'S'
+            }
+
+            if(counter === 3) 
+                break
+        }
+
+        document.getElementById('ketvirtaUzduotis').innerHTML += `<p>${html}</p>`
+
+        //Trečias scenarijus
+        document.getElementById('ketvirtaUzduotis').innerHTML += '<h4>Trečias scenarijus</h4>'
+
+        html = ''
+        counter = 0
+
+        while(true) {
+            const skaicius = rand(0, 1)
+
+            if(skaicius === 0) {
+                html += 'H'
+                counter++
+            } else {
+                html += 'S'
+                counter = 0
+            }
+
+            if(counter === 3) 
+                break
+        }
+
+        if(counter === 3) 
+            console.log('Herbas tikrai iškrito tris kartus iš eilės')
+
+        document.getElementById('ketvirtaUzduotis').innerHTML += `<p>${html}</p>`
+
+        //Kazys ir Petras žaidžiai šaškėm. Petras surenka taškų kiekį nuo 10 iki 20, 
+        //Kazys surenka taškų kiekį nuo 5 iki 25. Vienoje eilutėje išvesti žaidėjų vardus su taškų kiekiu ir 
+        //“Partiją laimėjo: ​laimėtojo vardas​”. Taškų kiekį generuokite atsitiktinio skaičiaus funkcija. 
+        //Žaidimą laimi tas, kas greičiau surenka 222 taškus. Partijas kartoti tol, kol kažkuris žaidėjas pirmas 
+        //surenka 222 arba daugiau taškų.
+
+        let kazys = 0
+        let petras = 0
+
+        while(true) {
+            let kazioPartija = rand(5, 25)
+            let petroPartija = rand(10, 20)
+            let result = ''
+
+            kazys += kazioPartija
+            petras += petroPartija
+
+            if(kazioPartija > petroPartija) 
+                result = `<p>Partiją laimėjo Kazys surinkęs ${kazioPartija} taškus</p>`
+            else if(kazioPartija === petroPartija)
+                result = `<p>Įvyko lygiosios</p>`
+            else     
+                result = `<p>Partiją laimėjo Petras surinkęs ${petroPartija} taškus</p>`
+            
+            document.getElementById('penktaUzduotis').innerHTML += result
+
+            if(kazys >= 222 || petras >= 222) {
+                if(kazys > petras) 
+                    result = `<p><strong>Žaidimą laimėjo Kazys surinkęs ${kazys} taškus</strong></p>`
+                else if(kazys === petras)
+                    result = `<p><strong>Laimėjo draugystė</strong></p>`
+                else 
+                    result = `<p><strong>Žaidimą laimėjo Petras surinkęs ${petras} taškus</strong></p>`
+
+                document.getElementById('penktaUzduotis').innerHTML += result
+
+                break
+            }
+        }
+
+    </script>
+</body>
+</html>

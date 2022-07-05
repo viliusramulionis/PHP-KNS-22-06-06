@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break - Continue</title>
+</head>
+<body>
+    <script>
+        //Ciklo sustabdymui naudojamas raktinis žodis break
+        let i = 0
+        while(i < 500000) {
+            if(i >= 1) {
+                console.log('Labas')
+                break
+            }
+
+            i++
+        }
+
+        for(let i = 0; i < 100000; i++) {
+            if(i > 10)
+                break
+
+            console.log('Labas for cikle')
+        }
+
+        //Einamojo ciklo rato praleidimui naudojamas raktinis žodis continue
+
+        for(let i = 0; i < 200; i++) {
+            if(i % 2 === 0)
+                continue
+            
+            console.log('Labas for cikle, einamasis indeksas yra: ' + i)
+        }
+    </script>
+</body>
+</html>

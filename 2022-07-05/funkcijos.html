@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funkcijos</title>
+</head>
+<body>
+    <script>
+        //ES6 Funkcijos aprašymas
+        // const test = () => {
+        
+        // }
+
+        // function test(parametras, parametras2, parametras3) {
+        //     if(parametras === '') {
+        //         console.log('Bandoma blogai paleisti funkciją')
+        //     } else {
+        //         console.log(parametras)
+        //         console.log(parametras2)
+        //         console.log(parametras3)
+        //     }
+        // }
+
+        // test('', 'Pasauli', '!')
+
+        // function defaultParams(param1, param2 = 'Pasauli', param3 = '!') {
+        //     console.log(param1, param2, param3)
+        // }
+
+        // defaultParams('Labas', 'Lukai', ',')
+
+        function multiply(a, b) {
+            if(a === 0)
+                return 'Perduotas neteisingas parametras'
+
+            return a * b
+        }
+
+        const x = multiply(1, 20)
+
+        console.log(x)
+
+        // const multiply = (a, b) => {
+        //     if(a === 0)
+        //         return 'Perduotas neteisingas parametras'
+
+        //     return a * b
+        // }
+
+        // const x = multiply(1, 20)
+
+        // console.log(x)
+
+        //Loop'o paleidimas su funkcija
+        
+        // const loop = () => {
+        //     console.log('Sukasi')
+        //     loop()
+        // }
+    </script>
+</body>
+</html>
