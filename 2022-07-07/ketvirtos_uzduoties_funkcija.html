@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ketvirtos užduoties funkcija</title>
+</head>
+<body>
+    <script>
+        const rand = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        const monetosMetimas = (scenarijus) => {
+            const stop = scenarijus === 1 ? 1 : 3
+            let html = ''
+            let counter = 0
+
+            while(true) {
+                const skaicius = rand(0, 1)
+
+                if(skaicius === 0) {
+                    html += 'H'
+                    counter++
+                } else {
+                    html += 'S'
+
+                    if(scenarijus === 3)
+                        counter = 0
+                }
+
+                if(counter === stop) 
+                    break
+            }
+
+            return html
+        }
+
+        //Metam monetą. Monetos kritimo rezultatą imituojam atsitiktinio skaičiaus funkcija, kur 0 yra herbas, o 1 - skaičius. Monetos metimo rezultatus išvedame į ekraną atskiroje eilutėje: “S” jeigu iškrito skaičius ir “H” jeigu herbas. Suprogramuokite keturis skirtingus scenarijus kai monetos metimą stabdome:
+        // Iškritus herbui;
+        // Tris kartus iškritus herbui;
+        // Tris kartus iš eilės iškritus herbui;
+
+        document.write('<h2>Ketvirta užduotis</h2>')
+        
+        //Pirmas scenarijus
+        document.write('<h4>Pirmas scenarijus</h4>')
+
+        document.write(`<p>${monetosMetimas(1)}</p>`)
+
+        //Antras scenarijus
+        document.write('<h4>Antras scenarijus</h4>')
+
+        document.write(`<p>${monetosMetimas(2)}</p>`)
+
+        //Trečias scenarijus
+        document.write('<h4>Trečias scenarijus</h4>')
+
+        document.write(`<p>${monetosMetimas(3)}</p>`)
+        
+
+        // let x = 10
+        // let y = ''
+
+        // if(x === 10) 
+        //     y = 'X yra 10'
+        // else 
+        //     y = 'X nera 10'
+
+
+        // y = x === 10 ? 'X yra 10' : 'X nera 10'
+    </script>
+</body>
+</html>

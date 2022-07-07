@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Užduočių sprendimai 2022-06-30</title>
+</head>
+<body>
+    <script>
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        //Sugeneruokite masyvą iš 30 elementų (indeksai nuo 0 iki 29), kurių reikšmės yra atsitiktiniai skaičiai nuo 5 iki 25.
+        document.write('<h2>Pirma užduotis</h2>')
+
+        const masyvas = []
+
+        for(let i = 0; i < 30; i++) {
+            masyvas.push(rand(5, 25))
+        }
+
+        document.write('Gautas masyvas: ', masyvas)
+
+        //Suskaičiuokite kiek masyve yra reikšmių didesnių už 10;
+        document.write('<h2>Antra užduotis a):</h2>')
+
+        let counter = 0
+
+        for(const reiksme of masyvas) {
+            if(reiksme > 10)
+                counter++
+        }
+
+        document.write('Reikšmių didesnių už 10 yra: ' + counter)
+
+        //Raskite didžiausią masyvo reikšmę ir jos indeksą arba indeksus jeigu yra keli;
+        document.write('<h2>Antra užduotis b):</h2>')
+        
+        const max = Math.max(...masyvas)
+        const indeksai = []
+
+        for(const i in masyvas) {
+            if(masyvas[i] === max) 
+                indeksai.push(i)
+        }
+
+        document.write('Didžiausia reikšmė yra: ', max, ' Jų indeksas(ai): ', indeksai)
+
+        //Suskaičiuokite visų porinių (lyginių) indeksų reikšmių sumą;
+        document.write('<h2>Antra užduotis c):</h2>')
+
+        let sum = 0
+
+        for(const i in masyvas) {
+            if(i % 2 === 0)
+                sum += masyvas[i]
+        }
+
+        document.write('Porinių indeksų reikšmių suma yra: ', sum)
+
+        //Sukurkite naują masyvą, kurio reikšmės yra 1 uždavinio masyvo reikšmes minus tos reikšmės indeksas;
+        document.write('<h2>Antra užduotis d):</h2>')
+
+        const naujasMasyvas = []
+
+        for(const i in masyvas) {
+            const reiksme = masyvas[i] - i
+            naujasMasyvas.push(reiksme)
+        }
+
+        document.write('Naujas masyvas: ', naujasMasyvas)
+
+        //Papildykite masyvą papildomais 10 elementų su reikšmėmis nuo 5 iki 25, kad bendras masyvas padidėtų iki indekso 39;
+        document.write('<h2>Antra užduotis e):</h2>')
+
+        for(let i = 0; i < 10; i++) {
+            masyvas.push(rand(5, 25))
+        }
+
+        document.write('Naujas masyvo ilgis: ', masyvas.length)
+
+        //Iš masyvo elementų sukurkite du naujus masyvus. Vienas turi būti sudarytas iš neporinių indeksų reikšmių, o kitas iš porinių;
+        document.write('<h2>Antra užduotis f):</h2>')
+
+        const pirmasMasyvas = []
+        const antrasMasyvas = []
+
+        for(const i in masyvas) {
+            if(i % 2 === 0) {
+                antrasMasyvas.push(masyvas[i])
+            } else {
+                pirmasMasyvas.push(masyvas[i])
+            }
+        }
+
+        document.write('<p>Porinių indeksų masyvas: ', antrasMasyvas, '</p>')
+        document.write('<p>Neporinių indeksų masyvas: ', pirmasMasyvas, '</p>')
+
+        //Pirminio masyvo elementus su poriniais indeksais padarykite lygius 0 jeigu jie didesni už 15;
+        document.write('<h2>Antra užduotis g):</h2>')
+
+        for(const i in masyvas) {
+            if(masyvas[i] > 15 && i % 2 === 0) {
+                masyvas[i] = 0
+            }
+        }
+
+        console.log(masyvas)
+
+
+    </script>
+</body>
+</html>

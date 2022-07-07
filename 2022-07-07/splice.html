@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splice</title>
+</head>
+<body>
+    <script>
+        const masyvas = [10, 30, 650, 1, 25, 60, 44, 52]
+
+        //Norint ištrinti skaičių 650 iš masyvo
+        //Pirmas skaičius nurodo poziciją
+        //Antras skaičius nurodo kiekį, kiek norime ištrinti elementų
+        //masyvas.splice(2, masyvas.length - 2)
+        //const reiksme = ['Reiksme', 'Reiksme']
+        masyvas.splice(2, 1, ['Reiksme', 'Reiksme'])
+        console.log(masyvas)
+    </script>
+</body>
+</html>

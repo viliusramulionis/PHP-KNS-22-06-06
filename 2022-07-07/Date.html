@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+</head>
+<body>
+    <script>
+        //const data = new Date() //Grąžinamas esamos dienos ir laiko laiko žyma (timestamp)
+        const x = '9/12/1987 10:11:54'
+        const data = new Date(x)
+        // const day = data.getDay()
+        // const date = data.getDate() + 1
+        // const month = data.getMonth()
+        // const year = data.getFullYear()
+
+        // const hours = data.getHours()
+        // const minutes = data.getMinutes()
+        // const seconds = data.getSeconds()
+
+        //console.log(`${year}-${month}-${date} ${hours}:${minutes}:${seconds}`) 
+
+        const formattedDate = data.toLocaleDateString('lt-LT')
+        const formattedTime = data.toLocaleTimeString('lt-LT')
+
+        console.log(formattedDate + ' ' + formattedTime)
+    </script>
+</body>
+</html>
