@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        .box {
+            width: 50px;
+            height: 50px;
+            background: black;
+        }
+
+        .fullWidth {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="root" class="pagrindinis"></div>
+    <div data-filtras="spalva"></div>
+    <input type="text" name="laukelis" />
+
+    <!-- querySelectorAll pavyzdys-->
+    <div class="labas"></div>
+    <div class="labas"></div>
+    <div class="labas"></div>
+    <div class="labas"></div>
+
+    <!-- Stiliaus modifikavimas -->
+    <div class="box"></div>
+
+    <script>
+        //document.getElementById('root').innerHTML = '<h1>Labas Pasauli</h1>'
+        //Filtravimas pagal klasę pasinaudojant querySelector
+        document.querySelector('.pagrindinis').innerHTML = '<h1>Labas Pasauli</h1>'
+
+        //Filtravimas id pasinaudojant querySelectopr
+        document.querySelector('#root').innerHTML += '<h2>Priskirta eilutė pagal ID</h2>'
+
+        //Filtravimas naudojant querySelectoriu ir data atributa
+        document.querySelector('div[data-filtras="spalva"]').innerHTML = '<h3>Filtracija pagal atributą</h3>'
+
+        //Input laukelio reikšmės nustatymas
+        document.querySelector('input[name="laukelis"]').value = 'Kazkoks tekstas'
+
+        //Elemento atributo keitimas ir reikšmės paėmimas
+        document.querySelector('input[name="laukelis"]').setAttribute('atributas', 'Kažkokia reikšmė')
+
+        console.log(document.querySelector('input[name="laukelis"]').getAttribute('atributas'))
+
+        //console.log(document.querySelectorAll('.labas'))
+        document.querySelectorAll('.labas').forEach((element, index) => {
+            if(index === 2)
+                element.textContent = 'Labas Pasauli'
+        })
+        //console.log(document.querySelector('body div:nth-child(2)'))
+
+        //Klasės pridėjimas prie elemento
+        document.querySelector('.box').classList.add('fullWidth')
+
+        //Klasės pašalinimas iš elemento
+        document.querySelector('.box').classList.remove('fullWidth')
+
+        //Inline stiliaus pridėjimas 
+        document.querySelector('.box').style.width = '100%'
+        document.querySelector('.box').style.width = ''
+
+        document.querySelector('.box').style.background = 'yellow'
+        document.querySelector('.box').style.fontSize = `20px`
+        document.querySelector('.box').style.paddingLeft = "20px"
+        document.querySelector('.box').style.paddingTop = '20px'
+
+        const box = document.querySelector('.box')
+
+        box.classList.remove('box')
+
+        box.style.display = 'none'
+
+        box.classList.add('box')
+        box.style.display = 'block'
+    </script>
+</body>
+</html>

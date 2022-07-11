@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funkcija</title>
+</head>
+<body>
+    <script>
+        //Parametrai zymimi skliausteliuose deklaruojant funkcija
+        const daugyba = (a, b) => {
+            document.write(a * b)
+            return a * b
+        }
+
+        const dalyba = (a, b) => {
+            return a / b
+        }
+
+        //Auksčiau pateikiamas ES6 arrow funkcijos variantas, žemiau klasikinis funkcijos apibrėžimo variantas
+        // function funkcija(a, b) {
+
+        // }
+
+        //Argumentai zymimi issaukiant funkcija
+        const a = daugyba(10, 20)
+        const b = daugyba(5, 7)
+
+        console.log(dalyba(a, b).toFixed(2))
+
+        //Rezultato grąžinimas arrow funkcijose vienoje eilutėje
+        const sudetis = (a, b) => a + b
+
+        const heading = (tekstas, size = 1) => {
+            if(size > 0 && size <= 6)
+                return '<h'+size+'>' + tekstas + '</h'+size+'>'
+            else 
+                return 'Netinkamai nurodytas dydis'
+        }
+
+        document.write(heading('Labas Pasauli', 0))
+
+    </script>
+</body>
+</html>

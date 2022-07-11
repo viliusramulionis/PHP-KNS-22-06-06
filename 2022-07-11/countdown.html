@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <style>
+        .countdown {
+            display: flex;
+            margin: 0 auto;
+            width: 200px;
+            background: #5c5c5c;
+            font-weight: 600;
+            justify-content: center;
+            color: #FFF;
+            font-size: 40px;
+            gap: 3px;
+        }
+
+        .countdown > div:nth-child(2) {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown">
+        <div data-content="minutes"></div>m
+        <div data-content="seconds"></div>s
+    </div>
+    <script>
+        const minutes = document.querySelector('[data-content="minutes"]')
+        const seconds = document.querySelector('[data-content="seconds"]')
+
+        const countdown = (min, sec = 0) => {
+            minutes.textContent = min
+            seconds.textContent = sec
+
+            if(sec === 0) {
+                sec = 59
+                min--
+            } else {
+                sec--
+            }
+
+            if(min > 0 && sec > 0)
+                setTimeout(() => countdown(min, sec), 1000)
+        } 
+
+        countdown(15)
+
+    </script>
+</body>
+</html>
