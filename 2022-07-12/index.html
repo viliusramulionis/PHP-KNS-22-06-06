@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Lentelė</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+    <div id="rezultatai"></div>
+    <script>
+        //CRUD:
+        //CREATE
+        //READ
+        //UPDATE
+        //DELETE
+
+        const trinti = () => {
+            if(confirm('Ar tikrai norite trinti?')) {
+                console.log('Galime atlikti veiksmą')
+            } else {
+                console.log('Negalime atlikti veiksmo')
+            }
+        }
+
+        const masyvas = [
+            ['Sofa "Irutė"', 100.1, 21.02, 'Jurgulių g. 87-3, Šilutė'],    
+            ['Kėdė "Veronika"', 208.99, 42.02, 'Antonovų g. 15, Kretinga'],    
+            ['Stalas "Baronas"', 405.98, 86.6, 'Dvarininkų g. 1, Trakai']    
+        ]
+        const el = document.querySelector('#rezultatai')
+        
+        if(masyvas.length > 0) {
+
+            let html = `<table class="table">
+                            <thead>
+                                <th>#</th>
+                                <th>Prekė</th>
+                                <th>Kaina</th>
+                                <th>PVM</th>
+                                <th>Adresas</th>
+                                <th>Veiksmai</th>
+                            </thead>
+                            <tbody>`
+
+                            masyvas.forEach((eilute, indeksas) => {
+                                html += `<tr>
+                                            <td>${indeksas + 1}</td>
+                                            <td>${eilute[0]}</td>
+                                            <td>${eilute[1]}</td>
+                                            <td>${eilute[2]}</td>
+                                            <td>${eilute[3]}</td>
+                                            <td><button onclick="trinti()">Ištrinti</button></td>
+                                        </tr>`
+                            })
+
+                    html += `</tbody>
+                            </table>`
+
+            el.innerHTML = html
+
+        } else {
+            el.innerHTML = 'Nėra gauta jokių duomenų'
+        }
+
+    </script>
+</body>
+</html>

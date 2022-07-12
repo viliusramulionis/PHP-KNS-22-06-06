@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>2022-07-01</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <script>
+        const rand = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        const letterGenerator = (mode = true) => {
+            const raidziu = ['A', 'B', 'C', 'D']
+            const raidziuMasyvas = []
+            const raidziuSkaiciuotuvas = {
+                A: 0,
+                B: 0,
+                C: 0,
+                D: 0
+            }
+
+            for(let i = 0; i < 200; i++) {
+                const raide = raidziu[rand(0, raidziu.length - 1)]
+                raidziuMasyvas[raidziuMasyvas.length] = raide
+
+                raidziuSkaiciuotuvas[raide]++
+            }
+
+            return mode ? {raidziuMasyvas, raidziuSkaiciuotuvas} : raidziuMasyvas
+        }
+
+        document.write('<h1>Pirma užduotis</h1>')
+
+        const rezultatas = letterGenerator()    
+
+        document.write(rezultatas.raidziuMasyvas)
+
+        document.write(`<p>Raidės A ${rezultatas.raidziuSkaiciuotuvas.A}, Raidės B: ${rezultatas.raidziuSkaiciuotuvas.B}, Raidės C: ${rezultatas.raidziuSkaiciuotuvas.C}, Raidės D: ${rezultatas.raidziuSkaiciuotuvas.D}</p>`)
+        
+        document.write('<h1>Antra užduotis</h1>')
+
+        rezultatas.raidziuMasyvas.sort()
+
+        document.write(rezultatas.raidziuMasyvas)
+
+        document.write('<h1>Trečia užduotis</h1>')
+
+        const masyvas1 = letterGenerator(false)
+        const masyvas2 = letterGenerator(false)
+        const masyvas3 = letterGenerator(false)
+        const bendrasMasyvas = []
+        let tripletCounter = 0
+        let uniqueCounter = 0
+
+        for(const index in masyvas1) {
+            const combo = masyvas1[index] + masyvas2[index] + masyvas3[index]
+
+            if(masyvas1[index] === masyvas2[index] && masyvas2[index] === masyvas3[index]) 
+                tripletCounter++
+
+            if(!bendrasMasyvas.includes(combo))
+                uniqueCounter++
+
+            bendrasMasyvas.push(combo)
+        }
+
+        document.write(`<p>Po vieną nesikartojančių reikšmių yra: ${bendrasMasyvas.length - tripletCounter}</p>`)
+        document.write(`<p>Unikalių reikšmių yra: ${uniqueCounter}</p>`)
+    </script>
+</body>
+</html>
