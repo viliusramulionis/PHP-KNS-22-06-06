@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>2022-07-05</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <script>
+        const rand = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        const uniqueArrayGenerator = (arrayLength = 100, min = 100, max = 999) => {
+            const masyvas = []
+
+            while(masyvas.length < arrayLength) {
+                const skaicius = rand(min, max)
+
+                if(masyvas.indexOf(skaicius) === -1)
+                    masyvas.push(skaicius)
+            }
+
+            return masyvas
+        }
+
+
+        //Sugeneruokite du masyvus, kurių reikšmės yra atsitiktiniai skaičiai nuo 0 iki 500000. Masyvų ilgiai 1000. 
+        //Masyvų reikšmės turi būti unikalios savo masyve (t.y. neturi kartotis).t
+        document.write('<h1>Pirma užduotis:</h1>')
+
+        const pirmasMasyvas = uniqueArrayGenerator()
+        const antrasMasyvas = uniqueArrayGenerator()
+
+        // console.log([300, 250, 500].indexOf(251))
+
+        document.write(`<p>Pirmas masyvas: ${pirmasMasyvas}</p>`)
+        document.write(`<p>Antras masyvas:  ${antrasMasyvas}</p>`)
+
+        //Sugeneruokite masyvą, kuris būtų sudarytas iš reikšmių, 
+        //kurios yra pirmame 1 uždavinio masyve, bet nėra antrame 1 uždavinio masyve.
+
+        document.write('<h1>Antra užduotis:</h1>')
+
+        //const generuotasMasyvas = []
+
+        // for(const skaicius of pirmasMasyvas) {
+        //     if(!antrasMasyvas.includes(skaicius))
+        //         generuotasMasyvas.push(skaicius)
+        // }
+
+        let generuotasMasyvas = pirmasMasyvas.filter(value => !antrasMasyvas.includes(value))
+
+        document.write(`<p>Masyvas: ${generuotasMasyvas}</p>`)
+
+        //Sugeneruokite masyvą iš elementų, kurie kartojasi abiejuose 1 uždavinio masyvuose.
+        document.write('<h1>Trečia užduotis:</h1>')
+
+        generuotasMasyvas = pirmasMasyvas.filter(value => antrasMasyvas.includes(value))
+
+        document.write(`<p>Masyvas: ${generuotasMasyvas}</p>`)
+
+        document.write('<h1>Ketvirta užduotis:</h1>')
+
+        //Sugeneruokite masyvą, kurio indeksus sudarytų pirmo 1 uždavinio masyvo reikšmės, 
+        //o jo reikšmės būtų iš antrojo masyvo.
+        
+        generuotasMasyvas = []
+
+        for(const index in pirmasMasyvas) {
+            generuotasMasyvas[pirmasMasyvas[index]] = antrasMasyvas[index]
+        }
+
+        document.write(`<p>Masyvas: ${generuotasMasyvas}</p>`)
+
+        document.write('<h1>Penkta užduotis:</h1>')
+
+        //Sugeneruokite 10 skaičių masyvą pagal taisyklę: Du pirmi skaičiai- atsitiktiniai nuo 5 iki 25. 
+        //Trečias, pirmo ir antro suma. Ketvirtas - antro ir trečio suma. Penktas trečio ir ketvirto suma ir t.t.
+        generuotasMasyvas = [rand(5, 25), rand(5, 25)]
+
+        for(let i = 2; i < 10; i++) {
+            generuotasMasyvas[i] = generuotasMasyvas[i - 2] + generuotasMasyvas[i - 1]
+        }
+
+        document.write(`<p>Masyvas: ${generuotasMasyvas}</p>`)
+
+        document.write('<h1>Šešta užduotis (žr konsolę)</h1>')
+
+        //Sugeneruokite masyvą iš 10 elementų, kurio elementai būtų masyvai iš 5 elementų su reikšmėmis nuo 5 iki 25.
+
+        generuotasMasyvas = []
+
+        for(let i = 0; i < 10; i++) {
+            generuotasMasyvas[i] = []
+
+            for(let x = 0; x < 5; x++) {
+                const skaicius = rand(5, 25)
+                generuotasMasyvas[i][x] = skaicius
+            }
+        }
+
+        //Atsakymas:
+        console.log(generuotasMasyvas)
+
+        document.write('<h1>Šešta užduotis a)</h1>')
+
+        //Suskaičiuokite kiek masyve yra elementų didesnių už 10;
+
+        let counter = 0
+
+        for(const index in generuotasMasyvas) {
+            const filtered = generuotasMasyvas[index].filter(value => value > 10)
+            counter += filtered.length
+        }
+
+        document.write(`<p>Elementų kurių reikšmės yra daugiau nei dešimt yra: ${counter}</p>`)
+
+        document.write('<h1>Šešta užduotis b)</h1>')
+        //Raskite didžiausio elemento reikšmę;
+
+        let max = 0
+
+        for(const index in generuotasMasyvas) {
+            const elMax = Math.max(...generuotasMasyvas[index])
+
+            if(elMax > max)
+                max = elMax
+        }
+
+        document.write(`<p>Didžiausio elemento reikšmė yra: ${max}</p>`)
+
+        document.write('<h1>Šešta užduotis c)</h1>')
+        //Suskaičiuokite kiekvieno antro lygio masyvų su vienodais indeksais sumas (t.y. suma reikšmių turinčių indeksą 0, 1 ir t.t.)
+
+    </script>
+</body>
+</html>
