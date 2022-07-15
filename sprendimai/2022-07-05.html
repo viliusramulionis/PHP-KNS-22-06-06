@@ -136,6 +136,49 @@
         document.write('<h1>Šešta užduotis c)</h1>')
         //Suskaičiuokite kiekvieno antro lygio masyvų su vienodais indeksais sumas (t.y. suma reikšmių turinčių indeksą 0, 1 ir t.t.)
 
+        const rezultatas = {
+            pirmas: 0,
+            antras: 0,
+            trecias: 0,
+            ketvirtas: 0,
+            penktas: 0
+        }
+        
+        for(const el of generuotasMasyvas) {
+            rezultatas.pirmas += el[0]
+            rezultatas.antras += el[1]
+            rezultatas.trecias += el[2]
+            rezultatas.ketvirtas += el[3]
+            rezultatas.penktas += el[4]
+        }
+
+        document.write(`Pirmo indekso suma: ${rezultatas.pirmas}, Antro indekso suma: ${rezultatas.antras}, Trečio indekso suma: ${rezultatas.trecias}, Ketvirto indekso suma: ${rezultatas.ketvirtas}, Penkto indekso suma: ${rezultatas.penktas}`)
+
+        document.write('<h1>Šešta užduotis d)</h1>')
+
+        for(let i = 0; i < generuotasMasyvas.length; i++) {
+            while(generuotasMasyvas[i].length < 7) {
+                generuotasMasyvas[i].push(rand(5, 25))
+            }
+        }
+
+        document.write('Rezultatas: ' + generuotasMasyvas)
+
+        document.write('<h1>Šešta užduotis e)</h1>')
+
+        const naujasMasyvas = []
+
+        for(const el of generuotasMasyvas) {
+            let sum = 0
+
+            for(const x of el) {
+                sum += x
+            }
+
+            naujasMasyvas.push(sum)
+        }
+        
+        document.write('Rezultatas: ' + naujasMasyvas)
     </script>
 </body>
 </html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <script>
+        const rand = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        document.write('<h1>Pirma užduotis:</h2>')
+
+        const headingas = (text) => { 
+            return `<h1>${text}</h1>`
+        }
+
+        document.write(headingas('Labas Pasauli!'))
+
+        document.write(headingas('Antra užduotis:'))
+
+        const headingasSuNumeriu = (text, size) => {
+            return `<h${size}>${text}</h${size}>`
+        }
+
+        document.write('Rezultatas:' + headingasSuNumeriu('Tekstas', 4))
+
+        document.write(headingas('Trečia užduotis:'))
+
+        //Generuokite atsitiktinį stringą, pasinaudodami kodu btoa(Date.now()). 
+        //Visas didžiąsias raides stringe įdėkite į h1 elementą. Likusių simbolių neimkite. 
+        //Jeigu iš eilės eina kelios didžiosios raidės, jas į elementą reikia dėti kartu 
+        //(h1 atsidaro prieš pirmosios ir užsidaro po paskutinės). 
+        //Keitimui galite panaudoti patobulintą pirmo uždavinio funkciją ir replaceAll() metodą.
+        
+        const random = btoa(Date.now())
+
+        const letters = random.split(/[^A-Z]/)
+
+        for(const el of letters) {
+            if(el != '')
+                document.write(headingas(el))
+        }
+
+        //Parašykite funkciją, kuri skaičiuotų, iš kiek sveikų skaičių jos argumentas dalijasi be liekanos 
+        //(išskyrus vienetą ir patį save). 
+        //Argumentą patikrinkite ar tai sveikas skaičius, priešingu atveju grąžinkite neigiamą atsakymą.
+
+        document.write(headingas('Ketvirta užduotis:'))
+
+        const dalikliuSkaiciuoklis = (skaicius) => {
+            let count = 0
+
+            for(let i = 2; i < skaicius; i++) {
+                if(skaicius % i === 0)
+                    count++
+            }
+
+            return count
+        }
+
+        document.write('Rezultatas: ', dalikliuSkaiciuoklis(99))
+
+        document.write(headingas('Penkta užduotis:'))
+
+        let masyvas = []
+
+        for(let i = 0; i < 100; i++) {
+            masyvas.push(rand(33, 77))
+        }
+
+        masyvas.sort((a, b) => dalikliuSkaiciuoklis(b) - dalikliuSkaiciuoklis(a))
+
+        document.write('Rezultatas: ' + masyvas)
+
+        masyvas = []
+
+        for(let i = 0; i < 100; i++) {
+            masyvas.push(rand(333, 777))
+        }
+
+        const rezultatas = masyvas.filter(value => dalikliuSkaiciuoklis(value))
+
+    </script>
+</body>
+</html>
