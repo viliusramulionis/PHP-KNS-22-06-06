@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch</title>
+</head>
+<body>
+    <select name="pasirinkimas">
+        <option>Pasirinkite departamentą</option>
+        <option value="1">Policijos departamentas</option>
+        <option value="2">Medicinos departamentas</option>
+        <option value="3">Priešgaisrinis departamentas</option>
+        <option value="4">Dujų avarinė tarnyba</option>
+    </select>
+    <div data-option="1" style="display: none;">
+        <label>Kaip atrodė Jūsų plėšikas</label>
+        <input type="text" />
+    </div>
+    <div data-option="2" style="display: none;">
+        <label>Kokiais skausmais skundžiatės?</label>
+        <input type="text" />
+    </div>
+    <div data-option="3" style="display: none;">
+        <label>Kas dega?</label>
+        <input type="text" />
+    </div>
+    <div data-option="4" style="display: none;">
+        <label>Kur pajautėte dujų kvapą?</label>
+        <input type="text" />
+    </div>
+    <script>
+        document.querySelector('select[name="pasirinkimas"]').addEventListener('change', (event) => {
+            switch(event.target.value) {
+                case '1':
+                    console.log('Pasirinktas pirmas departamentas')
+                    document.querySelectorAll('[data-option]').forEach(el => el.style.display = 'none')
+                    document.querySelector('div[data-option="1"]').style.display = 'block'
+                    break
+                case '2': 
+                    console.log('Pasirinktas antras departamentas')
+                    document.querySelectorAll('[data-option]').forEach(el => el.style.display = 'none')
+                    document.querySelector('div[data-option="2"]').style.display = 'block'
+                    break
+                case '3':
+                    console.log('Pasirinktas trečias departamentas')
+                    document.querySelectorAll('[data-option]').forEach(el => el.style.display = 'none')
+                    document.querySelector('div[data-option="3"]').style.display = 'block'
+                    break
+                case '4':
+                    console.log('Pasirinktas ketvirtas departamentas')
+                    document.querySelectorAll('[data-option]').forEach(el => el.style.display = 'none')
+                    document.querySelector('div[data-option="4"]').style.display = 'block'
+                    break
+                default:
+                    console.log('Departamentas nepasirinktas')
+                    break
+            }
+
+            // document.querySelectorAll('[data-option]').forEach(el => el.style.display = 'none')
+            // document.querySelector('div[data-option="'+event.target.value+'"]').style.display = 'block'
+        })
+
+        //Switch pavyzdys
+
+        //let x = 55
+
+        // if(x === 10) 
+        //     console.log('X yra desimt')
+        // else if(x === 20)
+        //     console.log('X yra dvidesimt')
+        // else if(x === 30)
+        //     console.log('X yra trisdesimt')
+        // else 
+        //     console.log('X yra ' + x)
+
+        // switch(x) {
+        //     case 10:
+        //         console.log('X yra desimt')
+        //         break
+        //     case 20:
+        //         console.log('X yra dvidesimt')
+        //         break
+        //     case 30:
+        //         console.log('X yra trisdesimt')
+        //         break
+        //     default:
+        //         console.log('X yra ' + x)
+        //         break
+        // }
+    </script>
+</body>
+</html>

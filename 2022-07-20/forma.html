@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma</title>
+</head>
+<body>
+    <div class="result"></div>
+    <form>
+        <select name="pasirinkimas">
+            <option>Pasirinkite departamentą</option>
+            <option value="1">Policijos departamentas</option>
+            <option value="2">Medicinos departamentas</option>
+            <option value="3">Priešgaisrinis departamentas</option>
+            <option value="4">Dujų avarinė tarnyba</option>
+        </select>
+        <div>
+            <label>Kaip atrodė Jūsų plėšikas</label>
+            <input type="text" name="robber" />
+        </div>
+        <div>
+            <label>Kokiais skausmais skundžiatės?</label>
+            <input type="text" name="pain" />
+        </div>
+        <div>
+            <label>Kas dega?</label>
+            <input type="text" name="burning" />
+        </div>
+        <div>
+            <label>Kur pajautėte dujų kvapą?</label>
+            <input type="text" name="gas" />
+        </div>
+        <button type="submit">Siųsti</button>
+    </form>
+    <script>
+        const form = document.querySelector('form')
+        form.addEventListener('submit', (event) => {
+            event.preventDefault()
+
+            const data = new FormData(form)
+
+            //Norint pridėti naują reikšmę
+            //data.append('TestinisLaukelis', 'Test')
+
+            for(const input of data.entries()) {
+                let respText = ''
+                switch(input[0]) {
+                    case 'pasirinkimas':
+                        respText = 'Pasirinktas departmentas: '
+                        break
+                    case 'robber':
+                        respText = 'Plėšiko duomenys: '
+                        break
+                    case 'pain':
+                        respText = 'Skausmai kuriais skundžiatės: '
+                        break
+                    case 'burning':
+                        respText = 'Skausmai kuriais skundžiatės: '
+                        break
+                    case 'gas':
+                        respText = 'Dujų nuotėkis: '
+                        break
+                } 
+
+                document.querySelector('.result').innerHTML += `<p>${respText} ${input[1]}</p>`
+            }
+
+            //Reikšių paėmimas iš elementų
+            // const pasirinkimas = form.querySelector('select[name="pasirinkimas"]').value
+            // const robber = form.querySelector('input[name="robber"]').value
+            // const pain = form.querySelector('input[name="pain"]').value
+            // const burning = form.querySelector('input[name="burning"]').value
+            // const gas = form.querySelector('input[name="gas"]').value
+
+            // document.querySelector('.result').innerHTML = `<p>Pasirinktas departmentas: ${pasirinkimas}</p>`
+            // document.querySelector('.result').innerHTML += `<p>Plėšiko duomenys: ${robber}</p>`
+            // document.querySelector('.result').innerHTML += `<p>Skausmai kuriais skundžiatės: ${pain}</p>`
+            // document.querySelector('.result').innerHTML += `<p>Degantis objektas: ${burning}</p>`
+            // document.querySelector('.result').innerHTML += `<p>Dujų nuotėkis: ${gas}</p>`
+        })
+    </script>
+</body>
+</html>
