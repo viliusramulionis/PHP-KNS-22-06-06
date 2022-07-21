@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game of games</title>
+    <style>
+        #game {
+            position: relative;
+            margin: 50px auto 0;
+            background: black;
+        }
+
+        #game h2 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="game"></div>
+    <script>
+        // Sukurkite žaidimą.
+        // Žaidimą žaidžia du žaidėjai: Player(Jūs) ir Kompiuteris. 
+        // Žaidimą sudaro 10 roundų, vieno roundo trukmė 30 sekundžių. 
+        // Raundą laimi tas žaidėjas kuris surenka daugiau taškų.
+        // Kiekvieno raundo pabaigoje atvaizduokite laimėtojo vardą, surinktus taškus raunde ir visus laimėtus roundus prie žaidėjų vardų.
+        // Žaidimo esmė:
+        // Puslapyje atvaizduojamas kvadratas(50px x 50px) kuris keičia savo atsitiktinę poziciją bei savo fono spalvą kas 1 sekundę. 
+        // Jeigu žaidėjas spėja per šį laiko tarpą paspausti ant kvadrato - taškas skiriamas jam. Priešingu atveju laimi kompiuteris.
+        // Kiekviename rounde naršyklėje atvaizduokite laikmatį skaičiuojantį roundo trukmę. 
+        // Pasibaigus žaidimui atvaizduokite laimėtojo vardą bei mygtuką, ant kurio paspaudus žaidimas būtų pradedamas iš naujo.
+        
+        const results = {
+            timer: 0,
+            rounds: 1,
+            pp: 0,
+            cp: 0,
+            ppTotal: 0,
+            cpTotal: 0,
+            clicked: false
+        }
+
+        const rand = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        const gameOver = (options) => {
+            clearInterval(options.gameRepeat)
+            let html = `Žaidimą laimėjo kompiuteris, laimėjes ${results.cpTotal } roundus`
+
+            if(results.ppTotal > results.cpTotal) {
+                html = `Žaidimą laimėjo žaidėjas, laimėjes ${results.ppTotal } roundus`
+            } 
+
+            const endScreen = document.createElement('div')
+            const tryAgainButton = document.createElement('button')
+
+            endScreen.style.position = 'absolute'
+            endScreen.style.width = '100%'
+            endScreen.style.height = '100%'
+            endScreen.style.display = 'flex'
+            endScreen.style.justifyContent = 'center'
+            endScreen.style.alignItems = 'center'
+
+            tryAgainButton.textContent = 'Bandyti dar kartą'
+            tryAgainButton.style.background = 'red'
+            tryAgainButton.style.color = 'white'
+            tryAgainButton.style.padding = '1rem 2rem'
+            tryAgainButton.style.fontWeight = '600'
+
+            endScreen.innerHTML = '<div style="text-align: center;"><h2>' + html + '</h2></div>'
+            endScreen.querySelector('div').append(tryAgainButton)
+
+            tryAgainButton.addEventListener('click', () => {
+                endScreen.remove()
+                results.rounds = 1
+                results.ppTotal = 0
+                results.cpTotal = 0
+                results.clicked = false
+                launch()
+            })
+
+            options.game.innerHTML = ''
+            options.game.append(endScreen)
+        }
+
+        const startScreen = () => {
+            const options = {
+                width: 800,
+                height: 600,
+                boxWidth: 50,
+                boxHeight: 50,
+                maxRounds: 10,
+                roundTime: 30,
+                resultsWidth: 230,
+                game: document.querySelector('#game')
+            }
+
+            options.game.style.width = options.width + 'px'
+            options.game.style.height = options.height + 'px'
+
+            let html = '<div style="text-align: center;"><h2>Sveiki atvykę į sudėtingiausią žaidimą Pasaulyje!</h2></div>'
+
+            const startScreen = document.createElement('div')
+            const startButton = document.createElement('button')
+            startScreen.style.position = 'absolute'
+            startScreen.style.width = '100%'
+            startScreen.style.height = '100%'
+            startScreen.style.display = 'flex'
+            startScreen.style.justifyContent = 'center'
+            startScreen.style.alignItems = 'center'
+
+            startButton.textContent = 'Pradėti'
+            startButton.style.background = 'red'
+            startButton.style.color = 'white'
+            startButton.style.padding = '1rem 2rem'
+            startButton.style.fontWeight = '600'
+
+            startButton.addEventListener('click', () => launch(options))
+
+            startScreen.innerHTML = html
+            startScreen.querySelector('div').append(startButton)
+
+            options.game.append(startScreen)
+        }
+
+        const gamePlay = (options) => {
+            options.box.style.background = `rgb(${rand(80, 255)}, ${rand(80, 255)}, ${rand(80, 255)})`
+            options.box.style.left = rand(options.resultsWidth, options.width - options.boxWidth) + 'px'
+            options.box.style.top = rand(0, options.height - options.boxHeight) + 'px'
+
+            results.timer++
+            results.cp++
+            results.clicked = false
+
+            options.timer.textContent = results.timer
+
+            if(results.timer === options.roundTime) {
+                let winnerString = 'Kompiuteris surinkęs ' + results.cp + ' taškus'
+
+                if(results.pp > results.cp) {
+                    winnerString = 'Žaidėjas surinkęs ' + results.pp + ' taškus'  
+                    results.ppTotal++
+                } else {
+                    results.cpTotal++
+                }
+
+                let html = `<div><strong>${results.rounds} Roundą laimėjo:</strong>${winnerString}</div>`
+
+                if(results.pp === results.cp)
+                    html = `<strong>${results.rounds} Rounde įvyko lygiosios</strong>`
+                    
+                options.resultDiv.innerHTML += '<p>' + html + '</p>'
+
+                results.timer = 0
+                results.cp = 0
+                results.pp = 0
+
+                if(results.rounds === options.maxRounds)
+                    gameOver(options)
+
+                results.rounds++
+            }
+        }
+
+        const launch = (options) => {
+            options.game.innerHTML = ''
+
+            options.box = document.createElement('div')
+            options.timer = document.createElement('div')
+            options.resultDiv = document.createElement('div')
+            options.audio = document.createElement('audio')
+
+            options.box.addEventListener('click', () => {
+                options.audio.play()
+                
+                if(!results.clicked) {
+                    results.cp--
+                    results.pp++
+                    results.clicked = true
+                }
+            })
+
+            options.box.style.position = 'absolute'
+            options.box.style.width = options.boxWidth + 'px'
+            options.box.style.height = options.boxHeight + 'px'
+            options.box.style.zIndex = 1000
+
+            options.timer.style.position = 'absolute'
+            options.timer.style.top = '10px'
+            options.timer.style.right = '10px'
+            options.timer.style.color = 'white'
+            options.timer.style.fontSize = '28px'
+            options.timer.textContent = results.timer
+
+            options.resultDiv.style.position = 'absolute'
+            options.resultDiv.style.width = options.resultsWidth + 'px'
+            options.resultDiv.style.height = '100%'
+            options.resultDiv.style.background = 'white'
+
+            options.audio.style.display = 'none'
+            options.audio.setAttribute('src', 'erro.mp3')
+
+            options.game.append(options.box)
+            options.game.append(options.timer)
+            options.game.append(options.resultDiv)
+            options.game.append(options.audio)
+
+            options.resultDiv.innerHTML = '<h3>Rezultatai:</h3>'
+
+            options.gameRepeat = setInterval(() => gamePlay(options), 1000)
+        }
+
+        window.onload = () => {
+            startScreen()
+        }
+        
+    </script>
+</body>
+</html>
