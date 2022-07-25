@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    <script>
+        // const pazadas = await new Promise((igyvendintas, nepavyko) => {
+        //     setTimeout(() => nepavyko('Surprize'), 2000)
+        // })
+        // pazadas.then(atsakymas => console.log(atsakymas))
+        // .catch(error => console.log(error))
+        //console.log(pazadas)
+
+        const pazadas = async () => await new Promise((igyvendintas, nepavyko) => {
+            setTimeout(() => igyvendintas('Surprize'), 2000)
+        })
+
+        // async function pazadas() {
+
+        // }
+
+        const print = async () => {
+            console.log('Sveiki')
+            console.log(await pazadas())
+            console.log('Viso gero')
+        }
+
+        print()
+    </script>
+</body>
+</html>
