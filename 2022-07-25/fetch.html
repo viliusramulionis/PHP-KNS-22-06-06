@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+<body>
+    <script>
+        // fetch('https://www.delfi.lt/')
+        // .then(resp => resp.text())
+        // .then(resp => document.querySelector('body').innerHTML = resp)
+
+    //    const delfi = async () => {
+    //     const resp = await fetch('https://www.delfi.lt/')
+    //     const text = await resp.text()
+    //     document.querySelector('body').innerHTML = text
+    //    } 
+
+    //    delfi()
+
+    //    const article = {
+    //     imageUrl: 'https://g2.dcdn.lt/images/pix/430x260/8P_BxZ4js2Y/dvidesimtmeciu-krepsininku-kova-del-aukso-lietuva-ispanija-90807911.jpg',
+    //     url: 'https://www.delfi.lt/krepsinis/naujienos/dramatiskame-finale-ispanams-nusileide-lietuvos-dvidesimtmeciai-europos-vicecempionai.d?id=90807423',
+    //     title: 'Dramatiškame finale ispanams nusileidę Lietuvos dvidešimtmečiai Europos vicečempionai',
+    //     commentCount: 6,
+    //     fbCommentCount: 422,
+    //     hasVideo: true,
+    //     hasGallery: true
+    //    }
+
+       //API - APPLICATION PROGRAMMING INTERFACE
+
+    //    document.querySelector('body').innerHTML = `<article>
+    //                                                     <a href="${article.url}">
+    //                                                         <img src="${article.imageUrl}" alt="${article.title}">
+    //                                                         <h2>${article.title}(${article.commentCount}) ${article.fbCommentCount}</h2>
+    //                                                     </a>
+    //                                                 </article>`
+    
+    setInterval(() => {
+        fetch('https://blockchain.info/tobtc?currency=EUR&value=1')
+        .then(resp => resp.json())
+        .then(resp => console.log(resp))
+    }, 10000)
+    </script>
+</body>
+</html>

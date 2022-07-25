@@ -8,6 +8,7 @@
 </head>
 <body>
     <script>
+        //throw new Error('Klaida')
         // const pazadas = await new Promise((igyvendintas, nepavyko) => {
         //     setTimeout(() => nepavyko('Surprize'), 2000)
         // })
@@ -25,7 +26,12 @@
 
         const print = async () => {
             console.log('Sveiki')
-            console.log(await pazadas())
+            try {
+                console.log(await pazadas())
+                //throw new Error('Klaida')
+            } catch(error) {
+                console.log(error)
+            }
             console.log('Viso gero')
         }
 
