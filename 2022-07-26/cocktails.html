@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Cocktail</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        //URL query struktūra
+        //https://google.com/?parametras=reiksme&parametras2=naujaReiksme&parametras3=kitkas&parametras4=awdawd
+
+        fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+        .then(resp => resp.json())
+        .then(resp => {
+            const drink = resp.drinks[0]
+
+            //Objekto reikšmių priskyrimas prie kintamūjų
+            // const strDrink = drink.strDrink
+            // const strDrinkThumb = drink.strDrinkThumb
+            // const strIngredient1 = drink.strIngredient1
+
+            //ES6 variantas
+            //const { strDrink, strDrinkThumb, strIngredient1 } = drink
+
+            //Reiksmiu paėmimas ir priskyrimas is masyvo
+            //const masyvas = ['Labas', 'Pasauli']
+
+            // const labas = masyvas[0]
+            // const pasauli = masyvas[1]
+            
+            //ES6 variantas
+            //const [ labas, pasauli ] = masyvas
+
+            //console.log(labas, pasauli)
+
+            let html = `<div class="cocktail">
+                            <div class="image">
+                                <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" />
+                            </div>
+                            <h2>${drink.strDrink}</h2>
+                            <div class="ingredients">`
+                                for(let i = 1; i <= 15; i++) {
+                                    const ingredient = drink['strIngredient' + i]
+                                    const measure = drink['strMeasure' + i]
+
+                                    if(ingredient !== null && measure !== null)
+                                        html += `<li>${ingredient} (${measure})</li>`
+                                }
+            html +=         `</div>
+                            <p class="description">${drink.strInstructions}</p>
+                        </div>`
+
+            document.getElementById('root').innerHTML = html
+        })
+
+
+    </script>
+</body>
+</html>
