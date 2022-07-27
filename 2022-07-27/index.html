@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Šuniukų nuotraukų paieškos sistema</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const getData = (url) => {
+            const result = document.querySelector('#resp')
+
+            fetch(url)
+            .then(resp => resp.json())
+            .then(resp => {
+                const { message, status } = resp
+
+                if(status === 'success') {
+                    result.innerHTML = `<img src="${message}" alt="" />`
+                } else {
+                    result.innerHTML = 'Tokia veislė nerasta'
+                }
+            })
+            .catch(err => {
+                result.innerHTML = '<h2>Nepavyko susisiekti su serveriu</h2>'
+            })
+        }
+
+        const getBreeds = async (url) => {
+            try {
+                const resp = await fetch(url)
+                return await resp.json()
+            } catch {
+                return false
+            }
+        }
+
+        const handleSubmit = (event) => {
+            event.preventDefault()
+            let value = event.target.querySelector('[name="veisle"]').value
+            value = value.replace(' ', '/')
+                
+            const url = 'https://dog.ceo/api/breed/' + value + '/images/random'
+            const result = document.querySelector('#resp')
+
+            getData(url)
+        }
+
+        const init = async () => {
+            const root = document.getElementById('root')
+            const breedsResp = await getBreeds('https://dog.ceo/api/breeds/list/all')
+            const breeds = Object.keys(breedsResp.message)
+
+            root.innerHTML = `<form onsubmit="handleSubmit(event)">
+                                    <input type="text" name="veisle">
+                                    <button>Ieškoti</button>
+                                </form>
+                                <div id="autocomplete"></div>
+                                <div id="resp"></div>`
+
+            const result = document.querySelector('#resp')
+
+            document.querySelector('[name="veisle"]').addEventListener('keyup', (event) => {
+                document.querySelector('#autocomplete').innerHTML = ''
+
+                const value = event.target.value
+
+                if(value === '')
+                    return
+
+                breeds.forEach(breed => {
+                    if(breed.includes(value))
+                        document.querySelector('#autocomplete').innerHTML += '<li>' + breed + '</li>'
+                })
+            })
+            
+            getData('https://dog.ceo/api/breeds/image/random')
+        }
+
+        init()
+    </script>
+</body>
+</html>
