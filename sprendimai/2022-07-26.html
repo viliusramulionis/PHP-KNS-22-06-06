@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vizitinė kortelė</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: #2c2e31;
+        }
+        .card {
+            width: 730px;
+            margin: 50px auto;
+            background: #FFF;
+            border-radius: 3px;
+            position: relative;
+            z-index: 5;
+            padding: 2rem;
+        }
+        .card::before {
+            content: "";
+            width: 100%;
+            height: 130px;
+            border-bottom: 1px solid rgba(0,0,0,.15);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: #f9f9f9;
+        }
+        .card .circleImage {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 100%;
+            overflow: hidden;
+            border: 1px solid #dfdfdf;
+        }
+        .card .circleImage .newPerson {
+            display: none;
+        }
+
+        .card .circleImage img {
+            width: 100%;
+        }
+        
+        .card .info {
+            text-align: center;
+            padding: 15px 0 0;
+        }
+
+        .card .info .user_title {
+            color: #999;
+            font-size: 18px;
+        }
+
+        .card .info .user_value {
+            color: #2c2e31;
+            font-size: 38px;
+            margin: 5px;
+        }
+
+        .card .iconsList {
+            padding-top: 15px;
+        }
+
+        .card .iconsList ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card .iconsList ul li {
+            position: relative;
+            width: 80px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .card .iconsList ul li span {
+            display: block;
+            font-size: 36px;
+            color: rgb(174, 174, 174);
+        }
+
+        .card .iconsList ul li span:first-child {
+            padding-bottom: 12px;
+        }
+
+        .card .iconsList ul li span.hoverPosition {
+            color: #83ba43;
+            position: relative;
+            padding-top: 8px;
+        }
+
+        .card .iconsList ul li span.hoverPosition::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #83ba43;
+            width: 100%;
+            height: 2px;
+        }
+
+        .card .iconsList ul li span.hoverPosition::after { 
+            content: "";
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 3.5px 4px 3.5px;
+            border-color: transparent transparent #83ba43 transparent;
+            position: absolute;
+            top: -4px;
+            left: calc(50% - 3.5px);
+        }
+
+        .card .iconsList ul li > div {
+            position: absolute; 
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all .5s ease-in-out;
+        }
+
+        .card .iconsList ul li.active > div {
+            top: -49px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="image">
+            <div class="circleImage">
+                <div class="imageHolder"></div>
+                <a href="#" class="newPerson">New</a>
+            </div>
+        </div>
+        <div class="info">
+            <div class="user_title"></div>
+            <div class="user_value"></div>
+        </div>
+        <div class="iconsList">
+            <ul>
+                <li data-title="Hi, My name is">
+                    <div>
+                        <span><i class="bi bi-person-circle"></i></span>
+                        <span class="hoverPosition"><i class="bi bi-person-circle"></i></span>
+                    </div>
+                </li>
+                <li data-title="My email address is">
+                    <div>
+                        <span><i class="bi bi-envelope"></i></span>
+                        <span class="hoverPosition"><i class="bi bi-envelope"></i></span>
+                    </div>
+                </li>
+                <li data-title="My birthday is">
+                    <div>
+                        <span><i class="bi bi-calendar-check"></i></span>
+                        <span class="hoverPosition"><i class="bi bi-calendar-check"></i></span>
+                    </div>
+                </li>
+                <li data-title="My address is">
+                    <div>
+                        <span><i class="bi bi-map"></i></span>
+                        <span class="hoverPosition"><i class="bi bi-map"></i></span>
+                    </div>
+                </li>
+                <li data-title="My phone number is">
+                    <div>
+                        <span><i class="bi bi-telephone"></i></span>
+                        <span class="hoverPosition"><i class="bi bi-telephone"></i></span>
+                    </div>
+                </li>
+                <li data-title="My password is">
+                    <div>
+                        <span><i class="bi bi-lock"></i></span>
+                        <span class="hoverPosition"><i class="bi bi-lock"></i></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        fetch('https://randomuser.me/api/')
+        .then(resp => resp.json())
+        .then(resp => {
+            console.log(resp)
+            const elements = document.querySelectorAll('.iconsList ul li')
+            const results = resp.results[0]
+            const date = new Date(results.dob.date)
+
+            document.querySelector('.imageHolder').innerHTML = `<img src="${results.picture.large}" alt="">` 
+            elements[0].dataset.value = results.name.first + ' ' + results.name.last
+            elements[1].dataset.value = results.email
+            elements[2].dataset.value = date.toLocaleDateString('lt-LT')
+            elements[3].dataset.value = `${results.location.street.name} ${results.location.street.number} ${results.location.city} ${results.location.state} ${results.location.country}`
+            elements[4].dataset.value = results.phone
+            elements[5].dataset.value = results.login.password
+
+            document.querySelector('.user_title').textContent = elements[0].dataset.title
+            document.querySelector('.user_value').textContent = elements[0].dataset.value
+            elements[0].classList.add('active')
+
+            elements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    elements.forEach(all => all.classList.remove('active'))
+                    el.classList.add('active')
+                })
+            })
+        })
+
+    </script>
+</body>
+</html>
