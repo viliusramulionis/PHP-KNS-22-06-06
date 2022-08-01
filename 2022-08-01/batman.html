@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMDB API</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css');
+        .navigation {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="movies">
+        <div class="container">
+            <div class="py-3 text-center search">
+                <form onsubmit="handleSubmit(event)">
+                    <div class="input-group">
+                        <input type="text" name="keyword" class="form-control" placeholder="Įveskite paieškos frazę">
+                        <button type="submit" class="btn btn-success">Ieškoti</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 results"></div>
+            <div class="navigation text-center">
+                <button class="btn btn-primary" onclick="prev()">Ankstesnis</button>
+                <span class="current-page">Puslapis: 1</span>
+                <button class="btn btn-primary" onclick="next()">Sekantis</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const movies = document.getElementById('movies')
+        const results = movies.querySelector('.results')
+        const navigation = movies.querySelector('.navigation')
+
+        let totalResults = 0
+        let page = 1
+
+        const getData = async (search) => {
+            try {
+                const data = await fetch('https://www.omdbapi.com/?apikey=2e9b1f46&s=' + search + '&page=' + page)
+                return await data.json()
+            } catch {
+                return getData(search)
+            }
+        }
+
+        const handleSubmit = async (event) => {
+            event.preventDefault()
+            const keyword = event.target.querySelector('[name="keyword"]').value
+            const data = await getData(keyword)
+            if(data.Response === 'True') {
+                totalResults = data.totalResults
+                renderResults(data)
+                navigation.style.display = 'block'
+            } else {
+                results.innerHTML = `<div class="message">${data.Error}</div>`
+                navigation.style.display = 'none'
+            }
+        }
+
+        const renderResults = (data) => {
+            results.innerHTML = ''
+
+            data.Search.map(value => {
+                results.innerHTML += `<div class="col">
+                                        <div class="image mb-3"><img src="${value.Poster}" alt="${value.Title}" /></div>
+                                        <h4>${value.Title}</h4>
+                                        <div class="year"><strong>${value.Year}</strong></div>
+                                        <div class="type">${value.Type}</div>
+                                      </div>`
+            })
+        }
+
+        const prev = () => {
+            if(page <= 1)
+                return 
+            
+        }
+
+        const next = () => {
+            console.log('Veikia')
+        }
+
+        //To be continued...
+    </script>
+</body>
+</html>

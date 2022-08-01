@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masonry</title>
+    <style>
+        #masonry {
+            column-count: 4;
+            column-gap: 10px;
+        }
+        #masonry div {
+            margin-bottom: 10px;
+        }
+        #masonry img {
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="masonry"></div>
+    <script>
+        const database = []
+        const masonry = document.getElementById('masonry')
+        let loading = false
+
+        const rand = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min); 
+        }
+
+        const getData = async () => {
+            try {
+                const data = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
+                return await data.json()
+            } catch {
+                return getData(page)
+            }
+        }
+
+        const init = async () => {
+            loading = true
+            const data = await getData()
+            database.push(...data)
+            data.map(value => {
+                masonry.innerHTML += `<div class="image" onclick="rearange()"><img src="${value.url}" alt="" /></div>`
+            })
+            loading = false
+        }
+
+        const rearange = () => {
+            masonry.innerHTML = ''
+            const rearanged = []
+            let i = 0;
+
+            while(i < database.length) {
+                const random = rand(0, database.length - 1)
+
+                if(rearanged[random])
+                    continue
+
+                rearanged[random] = database[i]
+                i++
+            }
+
+            rearanged.map(value => {
+                masonry.innerHTML += `<div class="image" onclick="rearange()"><img src="${value.url}" alt="" /></div>`
+            })
+        }
+
+        window.addEventListener('scroll', (event) => {
+            const elHeight = masonry.offsetHeight
+            const scrollTop = window.scrollY
+            const windowHeight = window.innerHeight
+
+            if(!loading && (scrollTop + windowHeight) + 150 >= elHeight) {
+                init()
+            }
+        })
+
+        init()
+        
+        // //Self invoking function
+        // (async function init(page) {
+        //     const data = await getData(page)
+        //     database.push(...data)
+        //     data.map(value => {
+        //         masonry.innerHTML += `<div class="image"><img src="${value.url}" alt="" /></div>`
+        //     })
+        // })(1)
+
+        
+    </script>
+</body>
+</html>
