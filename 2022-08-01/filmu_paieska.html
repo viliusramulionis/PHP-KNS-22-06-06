@@ -10,6 +10,10 @@
         .navigation {
             display: none;
         }
+        .imagePlaceholder {
+            min-height: 430px;
+            background: rgb(224, 224, 224); 
+        }
     </style>
 </head>
 <body>
@@ -25,9 +29,9 @@
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 results"></div>
             <div class="navigation text-center">
-                <button class="btn btn-primary" onclick="prev()">Ankstesnis</button>
-                <span class="current-page">Puslapis: 1</span>
-                <button class="btn btn-primary" onclick="next()">Sekantis</button>
+                <button class="btn btn-primary" data-name="prev" onclick="prev()">Ankstesnis</button>
+                <span class="current-page"></span>
+                <button class="btn btn-primary" data-name="next" onclick="next()">Sekantis</button>
             </div>
         </div>
     </div>
@@ -36,7 +40,8 @@
         const results = movies.querySelector('.results')
         const navigation = movies.querySelector('.navigation')
 
-        let totalResults = 0
+        let totalPages = 0
+        let perPage = 10
         let page = 1
 
         const getData = async (search) => {
@@ -48,13 +53,23 @@
             }
         }
 
-        const handleSubmit = async (event) => {
-            event.preventDefault()
-            const keyword = event.target.querySelector('[name="keyword"]').value
+        const getResults = async (keyword) => {
             const data = await getData(keyword)
             if(data.Response === 'True') {
-                totalResults = data.totalResults
+                totalPages = Math.ceil(data.totalResults / perPage)
                 renderResults(data)
+                navigation.querySelector('.current-page').textContent = `Puslapis: ${page} / ${totalPages}`
+
+                if(page === 1)
+                    navigation.querySelector('[data-name="prev"]').setAttribute('disabled', 'disabled')
+                else 
+                    navigation.querySelector('[data-name="prev"]').removeAttribute('disabled')  
+
+                if(page === totalPages)
+                    navigation.querySelector('[data-name="next"]').setAttribute('disabled', 'disabled')
+                else 
+                    navigation.querySelector('[data-name="next"]').removeAttribute('disabled')
+
                 navigation.style.display = 'block'
             } else {
                 results.innerHTML = `<div class="message">${data.Error}</div>`
@@ -66,8 +81,13 @@
             results.innerHTML = ''
 
             data.Search.map(value => {
+                let image = `<img src="${value.Poster}" alt="${value.Title}" />`
+
+                if(value.Poster === 'N/A') 
+                    image = '<div class="imagePlaceholder"></div>'
+
                 results.innerHTML += `<div class="col">
-                                        <div class="image mb-3"><img src="${value.Poster}" alt="${value.Title}" /></div>
+                                        <div class="image mb-3">${image}</div>
                                         <h4>${value.Title}</h4>
                                         <div class="year"><strong>${value.Year}</strong></div>
                                         <div class="type">${value.Type}</div>
@@ -75,17 +95,30 @@
             })
         }
 
+        const handleSubmit = async (event) => {
+            event.preventDefault()
+            const keyword = event.target.querySelector('[name="keyword"]').value
+            page = 1
+            getResults(keyword)
+        }
+
         const prev = () => {
             if(page <= 1)
                 return 
-            
+
+            const keyword = movies.querySelector('[name="keyword"]').value
+            page--
+            getResults(keyword)
         }
 
         const next = () => {
-            console.log('Veikia')
-        }
+            if(page >= totalPages)
+                return
 
-        //To be continued...
+            const keyword = movies.querySelector('[name="keyword"]').value
+            page++
+            getResults(keyword)
+        }
     </script>
 </body>
 </html>
